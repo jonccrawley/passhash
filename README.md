@@ -80,7 +80,7 @@ Bad Request  400  You failed validation, there will me a message with details in
 |  400 	|   Bad Request	|   The request failed validation, there will me a message with details in the response.	|
 |  405  |   Method Not Allowed | The requests has is using a invalid request methods for the URL |
 
-## Starting the service
+## Running the service
 You can start the service with the following command
 ```bash
 $ go build github.com/jonccrawley/passhash

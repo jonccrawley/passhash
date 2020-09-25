@@ -26,7 +26,7 @@ func SaveHashHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if len(password) > 30  {
-		http.Error(w, "password exceeds maximum length is 30 character", http.StatusBadRequest)
+		http.Error(w, "The password provided exceeds maximum length of 30 character", http.StatusBadRequest)
 		return
 	}
 
