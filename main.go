@@ -13,7 +13,7 @@ import (
 )
 
 var (
-	Port = flag.String("port", ":8880", "Server Port")
+	Port = flag.String("port", ":8080", "Server Port")
 )
 
 func main() {

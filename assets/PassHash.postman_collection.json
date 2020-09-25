@@ -79,7 +79,7 @@
 						"1"
 					]
 				},
-				"description": "Retrive your hashed value"
+				"description": "Retrieve your hashed value"
 			},
 			"response": []
 		},
@@ -103,7 +103,7 @@
 					"urlencoded": []
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8880/stats",
+					"raw": "http://127.0.0.1:8080/stats",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -111,12 +111,12 @@
 						"0",
 						"1"
 					],
-					"port": "8880",
+					"port": "8080",
 					"path": [
 						"stats"
 					]
 				},
-				"description": "Retrive server stats"
+				"description": "Retrieve server stats"
 			},
 			"response": []
 		},
