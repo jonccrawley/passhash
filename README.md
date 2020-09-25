@@ -65,7 +65,7 @@ $ ./passhash
 
 The Server will start up at http://127.0.0.1:8880/ by default
 
-##Test the codebase
+## Test the codebase
 You can run the unit tests with the following command from the projects root directory  
 ```bash
 $ go test ./...
@@ -77,31 +77,35 @@ $ echo "password=1235456" >> /tmp/post.data
 $ ab -n 10000 -c 5 -p /tmp/post.data -T application/x-www-form-urlencoded  -l http://127.0.0.1:8880/hash
 ```
 
-##Directories
+## Directories
+
 It might just be the java developer in me, but i like to have my code segmented out into logical packages. These are the intentions for each of the packages. 
 
-###/assets
+### /assets
+
 Files that can be linked in the README.md
 
-###/backend
+### /backend
+
 Backend and worker functions used to sha512 and Base64Encode the password
 
-###/backend
+### /backend
+
 Backend and worker functions used to sha512 and Base64Encode the password
 
-###/definition
+### /definition
 The primary place for interfaces to be defined for cross package access and reference. 
 
-###/handler
+### /handler
 Common folder for all endpoints
 
-###/model
+### /model
 Location for co0mmon object definitions 
 
-###/repository
+### /repository
 In memory data persistence implementations
 
-###/utils
+### /utils
 Any helper functions or tools
 
 
