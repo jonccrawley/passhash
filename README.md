@@ -11,7 +11,7 @@ All of the endpoints are defined in this Postman collection. You can import the 
 
 ### POST /hash
 This is the primary endpoint for submitting a request to have a password be hashed. Once a password has been queued the endpoint will return a unique identifier that can be used to retrieve the hashed password once complete. 
-####Params
+#### Params
  **Password** - This field is required, and cannot exceed 30 characters in length. 
 
 Example Request
@@ -23,8 +23,8 @@ $ curl -X POST -H"Content-Type:application/x-www-form-urlencoded" -d 'password=1
 ### GET /hash/:id
 This endpoint can be used to retrieve your queued hash results, this value should be avlible within 5 seconds. 
 
-####Params
- **id** -
+#### Params
+ **id** - This field is required, and must be numeric
 
 Example Request
 ```bash
@@ -56,7 +56,7 @@ Standard HTTP status codes are used. Here are some descriptions of the common on
 Bad Request  400  You failed validation, there will me a message with details in the response. 
 Bad Request  400  You failed validation, there will me a message with details in the response. 
 
-##Starting the service
+## Starting the service
 You can start the service with the following command
 ```bash
 $ go build github.com/jonccrawley/passhash
