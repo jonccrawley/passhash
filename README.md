@@ -24,7 +24,7 @@ $ curl -X POST -H"Content-Type:application/x-www-form-urlencoded" -d 'password=1
 1
 ```
 
-### GET /hash/:id
+### **GET** /hash/:id
 This endpoint can be used to retrieve your queued hash results, this value should be available within 5 seconds. 
 
 #### Params
@@ -39,7 +39,7 @@ $ curl -X GET  http://127.0.0.1:8880/hash/1
 PJkJr+wlNU1VHa4hWQuybjjVPyFzuNPcPu5MBH56scHri4UQPjvnumE7MbtcnDYhTcnxSkL9ei/bhIVrylxEwg==
 ```
 
-### GET /stats
+### **GET** /stats
 This endpoint can be used to retrieve server statistics on processing. 
 
 #### Response 
@@ -105,7 +105,7 @@ $ ab -n 10000 -c 5 -p /tmp/post.data -T application/x-www-form-urlencoded  -l ht
 ## Directories
 It might just be the java developer in me, but I like to have my code segmented out into logical packages. These are the intentions for each of the packages. 
 
-###Descriptions
+### Descriptions
 #### /assets
 Files that can be linked in the README.md
 
