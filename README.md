@@ -2,31 +2,38 @@
 
 ## Overview
 
-This is a simple service written in golang. The primary purpose of this service is to allow for a password to be POST'ed to an endpoint and hashed. After this password is hashed it should be accessible through a GET request. There is no persistence on the passwords, as they are only stored in memory. 
+This is a simple service written in golang. The primary purpose of this service is to allow for a password to be POST'ed to an endpoint and hashed. After this password is hashed it should be accessible through a GET request. There is no persistence on the passwords, as they are only stored in-memory. 
 
 ## Endpoints
 All of the endpoints are defined in this Postman collection. You can import the collection, and use it as a base to interact with the service.
 
 [Postman Collection](assets/PassHash.postman_collection.json)
 
-### POST /hash
-This is the primary endpoint for submitting a request to have a password be hashed. Once a password has been queued the endpoint will return a unique identifier that can be used to retrieve the hashed password once complete. 
+### **POST** /hash
+This endpoint is used for submitting a request to have a password be hashed. Once a password has been queued the endpoint will return a unique identifier that can be used to retrieve the hashed password once complete. 
+
 #### Params
  **Password** - This field is required, and cannot exceed 30 characters in length. 
 
-Example Request
+#### Response 
+The ID for the queued hash job
+
+####Example Request
 ```bash
 $ curl -X POST -H"Content-Type:application/x-www-form-urlencoded" -d 'password=123' http://127.0.0.1:8880/hash
 1
 ```
 
 ### GET /hash/:id
-This endpoint can be used to retrieve your queued hash results, this value should be avlible within 5 seconds. 
+This endpoint can be used to retrieve your queued hash results, this value should be available within 5 seconds. 
 
 #### Params
  **id** - This field is required, and must be numeric
 
-Example Request
+#### Response 
+The hashed password
+
+####Example Request
 ```bash
 $ curl -X GET  http://127.0.0.1:8880/hash/1
 PJkJr+wlNU1VHa4hWQuybjjVPyFzuNPcPu5MBH56scHri4UQPjvnumE7MbtcnDYhTcnxSkL9ei/bhIVrylxEwg==
@@ -35,6 +42,10 @@ PJkJr+wlNU1VHa4hWQuybjjVPyFzuNPcPu5MBH56scHri4UQPjvnumE7MbtcnDYhTcnxSkL9ei/bhIVr
 ### GET /stats
 This endpoint can be used to retrieve server statistics on processing. 
 
+#### Response 
+ **total** - The total number of requests processed by the server
+ **average** - The average duration of execution time processing the request in microseconds
+
 Example Request
 ```bash
 $ curl -X GET  http://127.0.0.1:8880/stats
@@ -42,7 +53,15 @@ $ curl -X GET  http://127.0.0.1:8880/stats
 ```
 
 ### GET /shutdown
-This endpoint will shutdown the service, warning this will reset all the data in the service as it is a in memory service.  
+This endpoint will shutdown the service. 
+
+---
+**Warning**
+This will reset all the data in the service as it is a in-memory service.  
+---
+
+#### Response
+The service will return an OK if able to shutdown
 
 Example Request
 ```bash
@@ -52,9 +71,14 @@ $ $ curl -X GET  http://127.0.0.1:8880/shutdown
 
 ### Errors
 Standard HTTP status codes are used. Here are some descriptions of the common ones in the service. 
+     
+Bad Request  400  You failed validation, there will me a message with details in the response. 
 
-Bad Request  400  You failed validation, there will me a message with details in the response. 
-Bad Request  400  You failed validation, there will me a message with details in the response. 
+
+|   Status Code	|   Reason	|   Description	|
+|---	|---	|---	|
+|  400 	|   Bad Request	|   The request failed validation, there will me a message with details in the response.	|
+|  405  |   Method Not Allowed | The requests has is using a incvalid request methos for the URL |
 
 ## Starting the service
 You can start the service with the following command
@@ -71,41 +95,36 @@ You can run the unit tests with the following command from the projects root dir
 $ go test ./...
 ```
 
-You can also use apache benchmarking to test out concurrent invocations. 
+You can also use apache benchmarking to test out concurrent invocations. The following command will send 10000 requests with 5 concurrent requests at a time. 
 ```bash
 $ echo "password=1235456" >> /tmp/post.data
 $ ab -n 10000 -c 5 -p /tmp/post.data -T application/x-www-form-urlencoded  -l http://127.0.0.1:8880/hash
 ```
 
+
 ## Directories
+It might just be the java developer in me, but I like to have my code segmented out into logical packages. These are the intentions for each of the packages. 
 
-It might just be the java developer in me, but i like to have my code segmented out into logical packages. These are the intentions for each of the packages. 
-
-### /assets
-
+###Descriptions
+#### /assets
 Files that can be linked in the README.md
 
-### /backend
-
+#### /backend
 Backend and worker functions used to sha512 and Base64Encode the password
 
-### /backend
-
-Backend and worker functions used to sha512 and Base64Encode the password
-
-### /definition
+#### /definition
 The primary place for interfaces to be defined for cross package access and reference. 
 
-### /handler
+#### /handler
 Common folder for all endpoints
 
-### /model
-Location for co0mmon object definitions 
+#### /model
+Location for common object definitions 
 
-### /repository
-In memory data persistence implementations
+#### /repository
+Data persistence implementation
 
-### /utils
+#### /utils
 Any helper functions or tools
 
 

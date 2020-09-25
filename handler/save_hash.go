@@ -3,14 +3,14 @@ package handler
 import (
 	"fmt"
 	"github.com/jonccrawley/passhash/utils"
+	"log"
 	"net/http"
 
 	"github.com/jonccrawley/passhash/definition"
 	"github.com/jonccrawley/passhash/model"
 )
 
-// A buffered channel that we can send work requests on.
-var WorkQueue = make(chan model.WorkRequest, 1000)
+var WorkQueue = make(chan model.WorkRequest, 100)
 
 func SaveHashHandler(w http.ResponseWriter, r *http.Request) {
 
@@ -31,11 +31,10 @@ func SaveHashHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	requestId := definition.ExecutionRepo.Increment()
-
 	work := model.WorkRequest{Id: requestId, Password: password}
 
 	WorkQueue <- work
-	fmt.Printf("Work request queued for id %v \n",requestId)
+	log.Printf("Work request queued for id %v \n",requestId)
 
 	w.WriteHeader(http.StatusCreated)
 	fmt.Fprintf(w, "%v", requestId)

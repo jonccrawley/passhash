@@ -5,6 +5,7 @@ import (
 )
 
 func TestIncrement(t *testing.T) {
+
 	repo := ExecutionRepository{}
 
 	repo.Increment()
@@ -15,8 +16,8 @@ func TestIncrement(t *testing.T) {
 	}
 }
 
-
 func TestCurrentCounter(t *testing.T) {
+
 	repo := ExecutionRepository{}
 
 	requestCounter = 100

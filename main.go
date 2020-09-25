@@ -18,11 +18,10 @@ var (
 
 func main() {
 
-
 	log.Printf("Starting server on port %v", *Port)
 
-	//	fmt.Println("Starting the dispatcher")
-	backend.StartDispatcher(10)
+	log.Printf("Starting the Dispatcher with 5 workers.")
+	backend.StartDispatcher(5)
 
 	definition.HashRepo = &repository.HashRepository{}
 	definition.ExecutionRepo = &repository.ExecutionRepository{}
@@ -35,6 +34,7 @@ func main() {
 
 	m.HandleFunc("/shutdown", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("OK"))
+
 		// Cancel the context on request
 		cancel()
 	})

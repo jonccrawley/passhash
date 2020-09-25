@@ -1,8 +1,9 @@
 package repository
 
 import (
-	"github.com/jonccrawley/passhash/model"
 	"sync"
+
+	"github.com/jonccrawley/passhash/model"
 )
 
 type StatisticsRepository struct {}
