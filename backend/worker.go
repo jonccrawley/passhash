@@ -46,7 +46,6 @@ func (w *Worker) Start() {
 
 					log.Printf("Execution length: %v\n", duration)
 
-					//TODO: add timer
 					definition.HashRepo.Store(work.Id,finalSha)
 
 				case <-w.QuitChan:
