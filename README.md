@@ -55,10 +55,7 @@ This endpoint can be used to retrieve server statistics on processing.
 ### GET /shutdown
 This endpoint will shutdown the service. 
 
----
-**Warning**
-This will reset all the data in the service as it is a in-memory service.  
----
+**Warning**: This will reset all the data in the service as it is a in-memory service.  
 
 #### Response
 The service will return an OK if able to shutdown
@@ -117,7 +114,6 @@ You can also use apache benchmarking to test out concurrent invocations. The fol
  echo "password=1235456" >> /tmp/post.data
  ab -n 10000 -c 5 -p /tmp/post.data -T application/x-www-form-urlencoded  -l http://127.0.0.1:8080/hash
 ```
-
 
 ## Directories
 It might just be the java developer in me, but I like to have my code segmented out into logical packages. These are the intentions for each of the packages. 
