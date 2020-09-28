@@ -33,7 +33,7 @@ This endpoint can be used to retrieve your queued hash results, this value shoul
 #### Response 
 The hashed password
 
-####Example Request
+#### Example Request
 ```bash
  curl -X GET  http://127.0.0.1:8080/hash/1
 PJkJr+wlNU1VHa4hWQuybjjVPyFzuNPcPu5MBH56scHri4UQPjvnumE7MbtcnDYhTcnxSkL9ei/bhIVrylxEwg==
@@ -46,7 +46,7 @@ This endpoint can be used to retrieve server statistics on processing.
  **total** - The total number of requests processed by the server
  **average** - The average duration of execution time processing the request in microseconds
 
-Example Request
+#### Example Request
 ```bash
  curl -X GET  http://127.0.0.1:8080/stats
 {"total":1,"average":36}
@@ -63,7 +63,7 @@ This will reset all the data in the service as it is a in-memory service.
 #### Response
 The service will return an OK if able to shutdown
 
-Example Request
+#### Example Request
 ```bash
  curl -X GET  http://127.0.0.1:8080/shutdown
   OK
