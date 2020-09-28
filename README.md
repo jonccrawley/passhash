@@ -18,7 +18,7 @@ This endpoint is used for submitting a request to have a password be hashed. Onc
 #### Response 
 The ID for the queued hash job
 
-####Example Request
+#### Example Request
 ```bash
  curl -X POST -H"Content-Type:application/x-www-form-urlencoded" -d 'password=123' http://127.0.0.1:8080/hash
 1
