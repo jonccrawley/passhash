@@ -80,14 +80,30 @@ Bad Request  400  You failed validation, there will me a message with details in
 |  400 	|   Bad Request	|   The request failed validation, there will me a message with details in the response.	|
 |  405  |   Method Not Allowed | The requests has is using a invalid request methods for the URL |
 
-## Running the service
+
+## Running the Service
+### Locally
 You can start the service with the following command
 ```bash
 $ go build github.com/jonccrawley/passhash
 $ ./passhash
 ```
+The Server will start up at http://127.0.0.1:8080/ by default, you can override the port with the -port flag
 
+
+### Docker
+Build your docker image
+```bash
+$ docker build -t passhash:0.0.1 .
+```
+
+Run the image
+```bash
+$ docker run -p 8080:8080 passhash:0.0.1
+```
+Note: You can replace the port mapping in the command to map your local port to the port in the container. <desired port>:8080
 The Server will start up at http://127.0.0.1:8080/ by default
+
 
 ## Test the codebase
 You can run the unit tests with the following command from the projects root directory  
