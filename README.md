@@ -20,7 +20,7 @@ The ID for the queued hash job
 
 ####Example Request
 ```bash
-$ curl -X POST -H"Content-Type:application/x-www-form-urlencoded" -d 'password=123' http://127.0.0.1:8080/hash
+ curl -X POST -H"Content-Type:application/x-www-form-urlencoded" -d 'password=123' http://127.0.0.1:8080/hash
 1
 ```
 
@@ -35,7 +35,7 @@ The hashed password
 
 ####Example Request
 ```bash
-$ curl -X GET  http://127.0.0.1:8080/hash/1
+ curl -X GET  http://127.0.0.1:8080/hash/1
 PJkJr+wlNU1VHa4hWQuybjjVPyFzuNPcPu5MBH56scHri4UQPjvnumE7MbtcnDYhTcnxSkL9ei/bhIVrylxEwg==
 ```
 
@@ -48,7 +48,7 @@ This endpoint can be used to retrieve server statistics on processing.
 
 Example Request
 ```bash
-$ curl -X GET  http://127.0.0.1:8080/stats
+ curl -X GET  http://127.0.0.1:8080/stats
 {"total":1,"average":36}
 ```
 
@@ -65,7 +65,7 @@ The service will return an OK if able to shutdown
 
 Example Request
 ```bash
-$ $ curl -X GET  http://127.0.0.1:8080/shutdown
+ curl -X GET  http://127.0.0.1:8080/shutdown
   OK
 ```
 
@@ -85,8 +85,8 @@ Bad Request  400  You failed validation, there will me a message with details in
 ### Locally
 You can start the service with the following command
 ```bash
-$ go build github.com/jonccrawley/passhash
-$ ./passhash
+ go build github.com/jonccrawley/passhash
+ ./passhash
 ```
 The Server will start up at http://127.0.0.1:8080/ by default, you can override the port with the -port flag
 
@@ -94,27 +94,28 @@ The Server will start up at http://127.0.0.1:8080/ by default, you can override 
 ### Docker
 Build your docker image
 ```bash
-$ docker build -t passhash:0.0.1 .
+ docker build -t passhash:0.0.1 .
 ```
 
 Run the image
 ```bash
-$ docker run -p 8080:8080 passhash:0.0.1
+ docker run -p 8080:8080 passhash:0.0.1
 ```
 Note: You can replace the port mapping in the command to map your local port to the port in the container. <desired port>:8080
 The Server will start up at http://127.0.0.1:8080/ by default
 
 
+
 ## Test the codebase
 You can run the unit tests with the following command from the projects root directory  
 ```bash
-$ go test ./...
+ go test ./...
 ```
 
 You can also use apache benchmarking to test out concurrent invocations. The following command will send 10000 requests with 5 concurrent requests at a time. 
 ```bash
-$ echo "password=1235456" >> /tmp/post.data
-$ ab -n 10000 -c 5 -p /tmp/post.data -T application/x-www-form-urlencoded  -l http://127.0.0.1:8080/hash
+ echo "password=1235456" >> /tmp/post.data
+ ab -n 10000 -c 5 -p /tmp/post.data -T application/x-www-form-urlencoded  -l http://127.0.0.1:8080/hash
 ```
 
 
