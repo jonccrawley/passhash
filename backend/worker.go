@@ -1,8 +1,7 @@
 package backend
 
 import (
-	"crypto/sha512"
-	"encoding/base64"
+	"github.com/jonccrawley/passhash/utils"
 	"log"
 	"time"
 
@@ -37,16 +36,13 @@ func (w *Worker) Start() {
 					start := time.Now()
 
 					log.Printf("worker%d: Processing Password for requests id %v\n", w.ID, work.Id)
-					sha512Bytes := sha512.Sum512([]byte(work.Password))
 
-					finalSha := base64.StdEncoding.EncodeToString(sha512Bytes[:])
-
+					hash := utils.HashString(work.Password)
 					duration := time.Since(start).Microseconds()
 					definition.StatisticsRepo.Add(uint64(duration))
 
 					log.Printf("Execution length: %v\n", duration)
-
-					definition.HashRepo.Store(work.Id,finalSha)
+					definition.HashRepo.Store(work.Id,hash)
 
 				case <-w.QuitChan:
 					// We have been asked to stop.

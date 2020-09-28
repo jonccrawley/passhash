@@ -106,7 +106,8 @@ The Server will start up at http://127.0.0.1:8080/ by default
 ## Test the codebase
 You can run the unit tests with the following command from the projects root directory  
 ```bash
- go test ./...
+ go test ./... -coverprofile cp.out
+
 ```
 
 You can also use apache benchmarking to test out concurrent invocations. The following command will send 10000 requests with 5 concurrent requests at a time. 
