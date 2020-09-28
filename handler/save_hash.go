@@ -14,7 +14,7 @@ var WorkQueue = make(chan model.WorkRequest, 100)
 
 func SaveHashHandler(w http.ResponseWriter, r *http.Request) {
 
-	if utils.ValidateRequestMethod("POST",r.Method,w) == false {
+	if !utils.ValidateRequestMethod("POST",r.Method,w) {
 		return
 	}
 

@@ -9,7 +9,8 @@ import (
 )
 
 func StatisticsHandler(w http.ResponseWriter, r *http.Request) {
-	if utils.ValidateRequestMethod("GET",r.Method,w) == false {
+
+	if !utils.ValidateRequestMethod("GET",r.Method,w) {
 		return
 	}
 
