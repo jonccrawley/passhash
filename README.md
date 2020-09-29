@@ -80,9 +80,9 @@ Bad Request  400  You failed validation, there will me a message with details in
 
 ## Running the Service
 ### Locally
-You can start the service with the following command
+You can start the service with the following command, in the cloned project. 
 ```bash
- go build github.com/jonccrawley/passhash
+ go build .
  ./passhash
 ```
 The Server will start up at http://127.0.0.1:8080/ by default, you can override the port with the -port flag
