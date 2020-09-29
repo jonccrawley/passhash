@@ -124,19 +124,19 @@ It might just be the java developer in me, but I like to have my code segmented 
 Files that can be linked in the README.md
 
 #### /backend
-Backend and worker functions used to sha512 and Base64Encode the password
+Dispatcher and worker functions used to process requests.
 
 #### /definition
 The primary place for interfaces to be defined for cross package access and reference. 
 
 #### /handler
-Common folder for all endpoints
+Common folder for all handlers
 
 #### /model
-Location for common object definitions 
+Location for common model object definitions 
 
 #### /repository
-Data persistence implementation
+Data persistence implementations
 
 #### /utils
 Any helper functions or tools
